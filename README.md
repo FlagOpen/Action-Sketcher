@@ -16,11 +16,11 @@
 
 ## 🔥 Overview
 
+**Action-Sketcher** operates in a ***See-Think-Sketch-Act*** loop, where a foundation model first performs temporal and spatial reasoning to decompose a high-level instruction (e.g., "Clean the objects on the table") into a subtask and a corresponding **Visual Sketch**. This sketch, composed of primitives like points, boxes, and arrows, serves as an explicit, human-readable plan that guides a low-level policy to generate robust action sequences. This methodology enables three key capabilities: ***(bottom left)*** long-horizon planning through task decomposition, ***(bottom middle)*** explicit spatial reasoning by grounding instructions in scene geometry, and ***(bottom right)*** seamless human-in-the-loop adaptability via direct sketch correction and intent supervision.
+
 <div style="text-align: center; background-color: white;">
     <img src="assets/teasor.png" width=100% >
 </div>
-
-**Action-Sketcher** operates in a ***See-Think-Sketch-Act*** loop, where a foundation model first performs temporal and spatial reasoning to decompose a high-level instruction (e.g., "Clean the objects on the table") into a subtask and a corresponding **Visual Sketch**. This sketch, composed of primitives like points, boxes, and arrows, serves as an explicit, human-readable plan that guides a low-level policy to generate robust action sequences. This methodology enables three key capabilities: ***(bottom left)*** long-horizon planning through task decomposition, ***(bottom middle)*** explicit spatial reasoning by grounding instructions in scene geometry, and ***(bottom right)*** seamless human-in-the-loop adaptability via direct sketch correction and intent supervision.
 
 
 ## 🗞️ News
@@ -36,11 +36,11 @@
 
 ## 🤖 Method
 
+The Action-Sketcher framework is **model-agnostic** and can be integrated with any VLA model with an event-driven loop that (i) summarizes the next subtask, (ii) emits a compact Visual Sketch (points, boxes, arrows, relations) that externalizes spatial intent, and (iii) synthesizes an action chunk conditioned on that sketch and the robot state. The explicit intermediate supports targeted supervision, on-the-fly correction, and reliable long-horizon execution within a single-model architecture.
+
 <div align="center"> 
     <img src="assets/method.png" alt="Logo" style="width=100%;vertical-align:middle">
 </div>
-
-The Action-Sketcher framework is **model-agnostic** and can be integrated with any VLA model with an event-driven loop that (i) summarizes the next subtask, (ii) emits a compact Visual Sketch (points, boxes, arrows, relations) that externalizes spatial intent, and (iii) synthesizes an action chunk conditioned on that sketch and the robot state. The explicit intermediate supports targeted supervision, on-the-fly correction, and reliable long-horizon execution within a single-model architecture.
 
 ## ✨ Experiments
 <div align="center"> 
