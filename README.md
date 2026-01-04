@@ -29,9 +29,9 @@
 
 
 ## 🎯 TODO
-- [ ] Release the model checkpoints and inference codes used in our paper *(About 2 week)*.
+- [ ] Release the model checkpoints and inference codes *(About 3 week)*.
 - [ ] Release the full dataset and training codes *(About 1 month)*.
-- [ ] Release the Dataset Generation Pipeline *(Maybe 1 month or more)*.
+- [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month or more)*.
 
 
 ## 🤖 Method
