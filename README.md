@@ -5,7 +5,7 @@
 
 
 <p align="center">
-  <a href="https://arxiv.org/pdf/2601.xxxxx"><img src="https://img.shields.io/badge/arXiv-2601.xxxxx-b31b1b.svg" alt="arXiv"></a>
+  <a href="https://arxiv.org/pdf/2601.01618"><img src="https://img.shields.io/badge/arXiv-2601.01618-b31b1b.svg" alt="arXiv"></a>
   &nbsp;
   <a href="https://action-sketcher.github.io/"><img src="https://img.shields.io/badge/%F0%9F%8F%A0%20Project-Homepage-blue" alt="Project Homepage"></a>
   &nbsp;
@@ -55,7 +55,7 @@ If you find our work helpful, feel free to cite it:
 @article{tan2026action,
   title={Action-Sketcher: From Reasoning to Action via Visual Sketches for Long-Horizon Robotic Manipulation},
   author={Tan, Huajie and Co, Peterson and Xu, Yijie and Rong, Shanyu and Ji, Yuheng and Chi, Cheng and others},
-  journal={arXiv preprint arXiv:2601.xxxxx},
+  journal={arXiv preprint arXiv:2601.01618},
   year={2026}
 }
 ```
