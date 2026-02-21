@@ -34,6 +34,33 @@
 - [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month or more)*.
 
 
+## 🛠️ Setup
+
+```bash
+# clone repo
+git clone https://github.com/FlagOpen/Action-Sketcher.git
+cd Action-Sketcher
+
+# build conda env
+conda create -n action-sketcher python=3.10
+conda activate action-sketcher
+pip install -r requirements.txt
+
+# download model weights from HuggingFace
+huggingface-cli download petersonco/pi0-libero --local-dir ./checkpoint
+```
+
+## 💡 Quick Inference
+
+```bash
+# Run LIBERO evaluation
+python run_libero_example.py \
+    --checkpoint ./checkpoint \
+    --task_suite libero_goal \
+    --num_episodes 50
+```
+
+
 ## 🤖 Method
 
 The Action-Sketcher framework is **model-agnostic** and can be integrated with any VLA model with an event-driven loop that (i) summarizes the next subtask, (ii) emits a compact Visual Sketch (points, boxes, arrows, relations) that externalizes spatial intent, and (iii) synthesizes an action chunk conditioned on that sketch and the robot state. The explicit intermediate supports targeted supervision, on-the-fly correction, and reliable long-horizon execution within a single-model architecture.
