@@ -11,8 +11,9 @@
   &nbsp;
   <a href="#"><img src="https://img.shields.io/badge/🤗%20Dataset-Stay%20tuned-green.svg" alt="Benchmark"></a>
   &nbsp;
-  <a href="#"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Weights-Stay%20tuned-yellow" alt="Weights"></a>
+  <a href="https://huggingface.co/petersonco/action_sketcher-pi0-libero"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Weights-Huggingface-yellow" alt="Weights"></a>
 </p>
+
 
 ## 🔥 Overview
 
@@ -24,26 +25,61 @@
 
 
 ## 🗞️ News
-- **`2026-01-05`**: ✨ ***Codes, Dataset and Weights are coming soon! Stay tuned for updates***.
+- **`2026-02-22`**: 🤗 We released [Action-Sketcher-PI0-LIBERO](https://huggingface.co/petersonco/action_sketcher-pi0-libero) model and inference codes.
 - **`2026-01-05`**: 🔥 We released our [Project Page](https://action-sketcher.github.io/) of **Action-Sketcher**.
 
 
 ## 🎯 TODO
-- [ ] Release the model checkpoints and inference codes *(About 3 week)*.
+- [x] Release the model checkpoints and inference codes.
 - [ ] Release the full dataset and training codes *(About 1 month)*.
 - [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month or more)*.
+
+
+## 🤗 Model Zoo
+
+
+| Models                   | Checkpoint                                                     | Description                                           |
+|--------------------------|----------------------------------------------------------------|-------------------------------------------------------|
+| PI0-LIBERO     | [🤗 petersonco/action_sketcher-pi0-libero](https://huggingface.co/petersonco/action_sketcher-pi0-libero)   | PI0 model fine-tuned on LIBERO benchmark      |
+
+
+## 🛠️ Setup
+
+```bash
+# clone repo
+git clone https://github.com/FlagOpen/Action-Sketcher.git
+cd Action-Sketcher
+
+# build conda env
+conda create -n action-sketcher python=3.10
+conda activate action-sketcher
+pip install -r requirements.txt
+
+# download model weights from HuggingFace
+huggingface-cli download petersonco/action_sketcher-pi0-libero --local-dir ./checkpoint
+```
+
+## 💡 Quick Inference
+
+```bash
+# Run LIBERO evaluation
+python run_libero_example.py \
+    --checkpoint ./checkpoint \
+    --task_suite libero_goal \
+    --num_episodes 50
+```
 
 
 ## 🤖 Method
 
 The Action-Sketcher framework is **model-agnostic** and can be integrated with any VLA model with an event-driven loop that (i) summarizes the next subtask, (ii) emits a compact Visual Sketch (points, boxes, arrows, relations) that externalizes spatial intent, and (iii) synthesizes an action chunk conditioned on that sketch and the robot state. The explicit intermediate supports targeted supervision, on-the-fly correction, and reliable long-horizon execution within a single-model architecture.
 
-<div align="center"> 
+<div align="center">
     <img src="assets/method.png" alt="Logo" style="width=100%;vertical-align:middle">
 </div>
 
 ## ✨ Experiments
-<div align="center"> 
+<div align="center">
     <img src="assets/result.png" alt="Logo" style="width=100%;vertical-align:middle">
 </div>
 

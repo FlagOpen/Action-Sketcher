@@ -205,3 +205,13 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+checkpoint/model.safetensors
+
+# Large model files
+checkpoint/model.safetensors
+checkpoint/tokenizer.json
+*.safetensors
+outputs/
+inference_visualizations/
+checkpoint/*
+!checkpoint/.gitkeep
