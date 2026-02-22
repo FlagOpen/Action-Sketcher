@@ -25,14 +25,15 @@
 
 
 ## 🗞️ News
+- **`2026-02-22`**: 🔥🔥🔥 **Action-Sketcher** gets accepted to CVPR 2026! See you in Denver, Colorado, USA!
 - **`2026-02-22`**: 🤗 We released [Action-Sketcher-PI0-LIBERO](https://huggingface.co/petersonco/action_sketcher-pi0-libero) model and inference codes.
 - **`2026-01-05`**: 🔥 We released our [Project Page](https://action-sketcher.github.io/) of **Action-Sketcher**.
 
 
 ## 🎯 TODO
 - [x] Release the model checkpoints and inference codes.
-- [ ] Release the full dataset and training codes *(About 1 month)*.
-- [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month or more)*.
+- [ ] Release the full dataset and training codes *(About 2 weeks)*.
+- [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month)*.
 
 
 ## 🤗 Model Zoo
@@ -41,6 +42,8 @@
 | Models                   | Checkpoint                                                     | Description                                           |
 |--------------------------|----------------------------------------------------------------|-------------------------------------------------------|
 | PI0-LIBERO     | [🤗 petersonco/action_sketcher-pi0-libero](https://huggingface.co/petersonco/action_sketcher-pi0-libero)   | PI0 model fine-tuned on LIBERO benchmark      |
+| PI0-RoboTwin   | 🤗 ***Coming soon ...***  | PI0 model fine-tuned on Specific RoboTwin Tasks      |
+| PI0-RealWorld  | 🤗 ***Coming soon ...***  | PI0 model fine-tuned on Specific Real-World Tasks      |
 
 
 ## 🛠️ Setup
