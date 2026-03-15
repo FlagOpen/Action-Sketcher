@@ -9,7 +9,7 @@
   &nbsp;
   <a href="https://action-sketcher.github.io/"><img src="https://img.shields.io/badge/%F0%9F%8F%A0%20Project-Homepage-blue" alt="Project Homepage"></a>
   &nbsp;
-  <a href="#"><img src="https://img.shields.io/badge/🤗%20Dataset-Stay%20tuned-green.svg" alt="Benchmark"></a>
+  <a href="https://huggingface.co/datasets/petersonco/actionsketcher_libero"><img src="https://img.shields.io/badge/🤗%20Dataset-Huggingface-green.svg" alt="Dataset"></a>
   &nbsp;
   <a href="https://huggingface.co/petersonco/action_sketcher-pi0-libero"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Weights-Huggingface-yellow" alt="Weights"></a>
 </p>
@@ -77,7 +77,13 @@ Action-Sketcher uses a 3-stage training pipeline:
 
 ### Data Preparation
 
-Prepare your dataset with the following structure:
+Download the dataset from [🤗 petersonco/actionsketcher_libero](https://huggingface.co/datasets/petersonco/actionsketcher_libero):
+
+```bash
+huggingface-cli download petersonco/actionsketcher_libero --repo-type dataset --local-dir ./data/libero
+```
+
+The dataset includes:
 - `dataset_index.json`: Index file containing paths to episode data
 - `compiled_reasoning.json`: Visual reasoning annotations
 - `action_stats.json`: Action normalization statistics
