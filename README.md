@@ -31,7 +31,8 @@
 
 ## 🎯 TODO
 - [x] Release the model checkpoints and inference codes.
-- [ ] Release the full dataset and training codes *(About 1 month)*.
+- [x] Release the training codes.
+- [ ] Release the full dataset *(About 1 month)*.
 - [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month or more)*.
 
 
@@ -67,6 +68,70 @@ python run_libero_example.py \
     --checkpoint ./checkpoint \
     --task_suite libero_goal \
     --num_episodes 50
+```
+
+
+## 🚀 Training
+
+Action-Sketcher uses a 3-stage training pipeline:
+
+### Data Preparation
+
+Prepare your dataset with the following structure:
+- `dataset_index.json`: Index file containing paths to episode data
+- `compiled_reasoning.json`: Visual reasoning annotations
+- `action_stats.json`: Action normalization statistics
+
+### Stage 2: Reasoning Training
+
+Train the model to generate visual sketches (reasoning-only, no action prediction):
+
+```bash
+bash train_scripts/simulator/libero/run_stage_2.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage1_pretrained \
+    --exp_name your_stage2_experiment
+```
+
+### Stage 3: Joint Action-Language Training
+
+Train both reasoning and action prediction jointly:
+
+```bash
+bash train_scripts/simulator/libero/run_stage_3.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage2_checkpoint \
+    --exp_name your_stage3_experiment
+```
+
+### Action-Only Fine-tuning (Optional)
+
+Fine-tune on action prediction only (freezes reasoning):
+
+```bash
+bash train_scripts/simulator/libero/action_only.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage3_checkpoint \
+    --exp_name your_action_only_experiment
+```
+
+### Checkpoint Conversion
+
+Training saves checkpoints in DeepSpeed format. Convert to HuggingFace format for inference:
+
+```bash
+python scripts/convert_checkpoint.py \
+    --input_path ./outputs/your_experiment/checkpoints/epoch=X-step=Y.ckpt \
+    --output_path ./ckpts/hf_model
 ```
 
 
