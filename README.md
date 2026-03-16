@@ -9,7 +9,7 @@
   &nbsp;
   <a href="https://action-sketcher.github.io/"><img src="https://img.shields.io/badge/%F0%9F%8F%A0%20Project-Homepage-blue" alt="Project Homepage"></a>
   &nbsp;
-  <a href="#"><img src="https://img.shields.io/badge/🤗%20Dataset-Stay%20tuned-green.svg" alt="Benchmark"></a>
+  <a href="https://huggingface.co/datasets/petersonco/actionsketcher_libero"><img src="https://img.shields.io/badge/🤗%20Dataset-Huggingface-green.svg" alt="Dataset"></a>
   &nbsp;
   <a href="https://huggingface.co/petersonco/action_sketcher-pi0-libero"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Weights-Huggingface-yellow" alt="Weights"></a>
 </p>
@@ -70,6 +70,76 @@ python run_libero_example.py \
     --checkpoint ./checkpoint \
     --task_suite libero_goal \
     --num_episodes 50
+```
+
+
+## 🚀 Training
+
+Action-Sketcher uses a 3-stage training pipeline:
+
+### Data Preparation
+
+Download the dataset from [🤗 petersonco/actionsketcher_libero](https://huggingface.co/datasets/petersonco/actionsketcher_libero):
+
+```bash
+huggingface-cli download petersonco/actionsketcher_libero --repo-type dataset --local-dir ./data/libero
+```
+
+The dataset includes:
+- `dataset_index.json`: Index file containing paths to episode data
+- `compiled_reasoning.json`: Visual reasoning annotations
+- `action_stats.json`: Action normalization statistics
+
+### Stage 2: Reasoning Training
+
+Train the model to generate visual sketches (reasoning-only, no action prediction):
+
+```bash
+bash train_scripts/simulator/libero/run_stage_2.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage1_pretrained \
+    --exp_name your_stage2_experiment
+```
+
+### Stage 3: Joint Action-Language Training
+
+Train both reasoning and action prediction jointly:
+
+```bash
+bash train_scripts/simulator/libero/run_stage_3.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage2_checkpoint \
+    --exp_name your_stage3_experiment
+```
+
+### Action-Only Fine-tuning (Optional)
+
+Fine-tune on action prediction only (freezes reasoning):
+
+```bash
+bash train_scripts/simulator/libero/action_only.sh \
+    --json_path /path/to/your/data/dataset_index.json \
+    --data_root /path/to/your/data \
+    --reasoning_json_path /path/to/your/data/compiled_reasoning.json \
+    --normalization_path /path/to/your/data/action_stats.json \
+    --pretrained_model_path ./ckpts/stage3_checkpoint \
+    --exp_name your_action_only_experiment
+```
+
+### Checkpoint Conversion
+
+Training saves checkpoints in DeepSpeed format. Convert to HuggingFace format for inference:
+
+```bash
+python scripts/convert_checkpoint.py \
+    --input_path ./outputs/your_experiment/checkpoints/epoch=X-step=Y.ckpt \
+    --output_path ./ckpts/hf_model
 ```
 
 
