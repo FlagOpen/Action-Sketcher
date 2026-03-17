@@ -32,7 +32,7 @@
 
 ## 🎯 TODO
 - [x] Release the model checkpoints and inference codes.
-- [ ] Release the full dataset and training codes *(About 2 weeks)*.
+- [x] Release the full dataset and training codes.
 - [ ] Release the dataset generation pipeline and GUI tools *(Maybe 1 month)*.
 
 
@@ -42,8 +42,6 @@
 | Models                   | Checkpoint                                                     | Description                                           |
 |--------------------------|----------------------------------------------------------------|-------------------------------------------------------|
 | PI0-LIBERO     | [🤗 petersonco/action_sketcher-pi0-libero](https://huggingface.co/petersonco/action_sketcher-pi0-libero)   | PI0 model fine-tuned on LIBERO benchmark      |
-| PI0-RoboTwin   | 🤗 ***Coming soon ...***  | PI0 model fine-tuned on Specific RoboTwin Tasks      |
-| PI0-RealWorld  | 🤗 ***Coming soon ...***  | PI0 model fine-tuned on Specific Real-World Tasks      |
 
 
 ## 🛠️ Setup
